@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sentiment Analyzer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      resize: none;
+      outline: none;
+      transition: border 0.3s ease;
+    }
+
+    textarea:focus {
+      border-color: #2980b9;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+      transform: scale(1.05);
+    }
+
+    .result {
+      margin-top: 25px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .positive {
+      color: green;
+    }
+
+    .negative {
+      color: crimson;
+    }
+
+    .neutral {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 Sentiment Analysis Tool</h1>
+  <form method="POST">
+    <textarea name="text" placeholder="Type or paste your text here...">{{ text }}</textarea><br>
+    <button type="submit">Analyze Sentiment</button>
+  </form>
+
+  {% if sentiment %}
+  <div class="result {{ sentiment|lower }}">
+    Sentiment: <span>{{ sentiment }}</span> <br>
+    Score: {{ score }}
+  </div>
+  {% endif %}
+</body>
+</html>
